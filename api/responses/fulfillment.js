@@ -45,7 +45,7 @@ module.exports = function () {
     
   } 
 
-  function end(agent){
+  async function end(agent){
     let conv = agent.conv();
     console.log(":::::::::::in End::::::::::::");
     console.log(conv);
