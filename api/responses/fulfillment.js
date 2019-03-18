@@ -72,7 +72,7 @@ module.exports = function () {
   let intentMap = new Map();
   intentMap.set('Default Welcome Intent', welcome);
   intentMap.set('Default Fallback Intent', fallback);
-  intentMap.set('user provides surgery', provideSurgery);
+  intentMap.set('user provide surgery', provideSurgery);
   intentMap.set('user provide doctor name', provideDoctor);
   intentMap.set('user case confirm', caseConfirm);
   intentMap.set('End', end);
