@@ -9,7 +9,7 @@
  * https://sailsjs.com/config/blueprints
  */
 
-//module.exports.blueprints = {
+module.exports.blueprints = {
 
   /***************************************************************************
   *                                                                          *
@@ -38,21 +38,9 @@
 
   // shortcuts: true,
 
-//};
-
-
-
-
-module.exports.bootstrap = async function() {
-  var admin = require('firebase-admin');
-
-  var serviceAccount = require(sails.config.appPath + '/wecarebill-92132-firebase-adminsdk-7usxj-6240df0e36.json');
-  admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount),
-    databaseURL: 'https://wecarebill-92132.firebaseio.com'
-
-  });
-
-  db = admin.firestore();
-  
 };
+
+
+
+
+
