@@ -49,8 +49,19 @@ module.exports = function () {
     let conv = agent.conv();
     console.log(":::::::::::in End::::::::::::");
     console.log(conv);
+
+    var lowerBaselinePrice
+    var upperBaselinePrice
+    var surgery = await db.collection('surgery').doc('58').get().then(doc => {lowerBaselinePrice= doc.data().lowerBaselinePrice;});
+    var surgery1 = await db.collection('surgery').doc('58');
+    var surgery = await db.collection('surgery').doc('58').get().then(doc => {upperBaselinePrice= doc.data().upperBaselinePrice;});
   
-    return agent.add('多謝，請LIKE我們的FB專頁，讓更多病人明白手術收費。(in sail)');
+    
+    console.log(lowerBaselinePrice);
+    console.log(upperBaselinePrice);
+    
+    //agent.add(lowerBaselinePrice);
+    return agent.add('多謝，請LIKE我們的FB專頁，讓更多病人明白手術收費。(in sail)\n + lowerBaseLinePrice'+lowerBaselinePrice);
     
   } 
  
