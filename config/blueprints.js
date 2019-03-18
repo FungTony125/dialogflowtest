@@ -41,6 +41,8 @@
 //};
 
 
+
+
 module.exports.bootstrap = async function() {
   var admin = require('firebase-admin');
 
@@ -52,5 +54,5 @@ module.exports.bootstrap = async function() {
   });
 
   db = admin.firestore();
-
-}
+  
+};

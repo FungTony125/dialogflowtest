@@ -8,17 +8,17 @@ module.exports = function () {
 
   const agent = new WebhookClient({ request: req, response: res });
 
-  function welcome(agent) {
+  async function welcome(agent) {
     agent.add(`你好~我是病不孤單人工客服，免費幫您按預算找專科手術醫生，以及提供數據讓你更了解你的手術收費。請問你想查詢甚麼手術? (in sail )`);
   }
 
-  function fallback(agent) {
+  async   function fallback(agent) {
     agent.add(`I didn't understand`);
     agent.add(`I'm sorry, can you try again?`);
   }
 
 // get the price via the general option id and specific option id
-  function provideSurgery(agent){
+  async function provideSurgery(agent){
     let conv = agent.conv();
     console.log("::::::::in user provide surgery:::::::::::::::");
     console.log(conv);
@@ -28,7 +28,7 @@ module.exports = function () {
     return agent.add('請輸入負責手術的醫生名字，如不知道請輸入"0"**(in sailed)');
   }
 
-  function provideDoctor(agent){
+  async function provideDoctor(agent){
     let conv = agent.conv();
     console.log(":::::::::::in user provide doctor name::::::::::::");
     console.log(conv);
@@ -36,7 +36,7 @@ module.exports = function () {
     
   } 
 
-  function caseConfirm(agent){
+  async function caseConfirm(agent){
     let conv = agent.conv();
     console.log(":::::::::::in user case confirm::::::::::::");
     console.log(conv);
