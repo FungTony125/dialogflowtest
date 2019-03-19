@@ -60,10 +60,7 @@ module.exports = function () {
     
     // console.log(lowerBaselinePrice);
     // console.log(upperBaselinePrice);
-      var outPutContexts = agent.context.get('outputcontexts');
-      console.log(outPutContexts);
-      var contextSurgery =outPutContexts.parameters.surgery;
-      console.log(contextSurgery);
+      
 
       var lowerBaselinePrice
       var upperBaselinePrice
@@ -81,6 +78,11 @@ module.exports = function () {
 
       console.log(">>>>>>>"+lowerBaselinePrice);
       console.log(">>>>>>>>"+upperBaselinePrice);
+
+      var outPutContexts = agent.context.get('userprovidesurgery-followup');
+      console.log(outPutContexts);
+      // var contextSurgery =outPutContexts.parameters.surgery;
+      // console.log(contextSurgery);
       
 
     return agent.add('多謝，請LIKE我們的FB專頁，讓更多病人明白手術收費。(in sail)\n + lowerBaseLinePrice'+lowerBaselinePrice);
