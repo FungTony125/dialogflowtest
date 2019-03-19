@@ -60,7 +60,7 @@ module.exports = function () {
     
     // console.log(lowerBaselinePrice);
     // console.log(upperBaselinePrice);
-      
+    // tryrtryrytryr
 
       var lowerBaselinePrice
       var upperBaselinePrice
@@ -79,7 +79,7 @@ module.exports = function () {
       console.log(">>>>>>>"+lowerBaselinePrice);
       console.log(">>>>>>>>"+upperBaselinePrice);
 
-      var outputContexts = agent.context.get('outputcontexts');
+      var outputContexts = agent.context.get('outputContexts');
       console.log('outputContexts: '+outputContexts);
       var contextSurgery = outputContexts.parameters.surgery;
       
