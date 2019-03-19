@@ -71,49 +71,23 @@ module.exports = function () {
           console.log(element.id);
           console.log(element.data())
       });
-      await surgery.collection('option').doc('general').collection('A').get()
-  
+      
       var surgery1 = await db.collection('surgery').doc('58');
       var surgery = await db.collection('surgery').doc('58').get();
-  
-      console.log(">>>>>>>"+(await surgery.get()).data().lowerBaselinePrice);
+      lowerBaselinePrice = await db.collection('surgery').doc('58').lowerBaselinePrice;
+      upperBaselinePrice = await db.collection('surgery').doc('58').upperBaselinePrice;
+      console.log(">>>>>>>"+lowerBaselinePrice);
       console.log(">>>>>>>>"+upperBaselinePrice);
   
       //agent.add(lowerBaselinePrice);
   
     
-    //agent.add(lowerBaselinePrice);
+      //agent.add(lowerBaselinePrice);
     return agent.add('多謝，請LIKE我們的FB專頁，讓更多病人明白手術收費。(in sail)\n + lowerBaseLinePrice'+lowerBaselinePrice);
     
   } 
 
-  // async function noDoctorName(agent) {
-  //   var outputContexts = agent.context.get('outputContexts');
-  //   var surgery = outputContexts.surgery;
-  //   console.log("**** The surgery is "+surgery);
-
-  //   var lowerRange = await db.collection('surgery')
-  //   var lowerBaselinePrice
-  //   var upperBaselinePrice
-  //   var surgery = await db.collection('surgery').doc('58');
-  //   var general = await db.collection('general').doc('option').get();
-  //   var surgeryOptions = await surgery.collection('option').get()
-  //   surgeryOptions.forEach(element => {
-  //       console.log(element.id);
-  //       console.log(element.data())
-  //   });
-  //   await surgery.collection('option').doc('general').collection('A').get()
-
-  //   var surgery1 = await db.collection('surgery').doc('58');
-  //   var surgery = await db.collection('surgery').doc('58').get();
-
-  //   console.log(">>>>>>>"+(await surgery.get()).data().lowerBaselinePrice);
-  //   console.log(">>>>>>>>"+upperBaselinePrice);
-
-  //   agent.add(lowerBaselinePrice);
-
-  // }
- 
+   
   // function yourFunctionHandler(agent) {
   //   agent.add(`This message is from Dialogflow's Cloud Functions for Firebase editor!`);
   //   agent.add(new Card({
