@@ -79,7 +79,7 @@ module.exports = function () {
       console.log(">>>>>>>"+lowerBaselinePrice);
       console.log(">>>>>>>>"+upperBaselinePrice);
 
-      var outPutContexts = agent.context.get('userprovidesurgery-followup');
+      var outPutContexts = agent.context.get('outputcontexts');
       console.log(outPutContexts);
       // var contextSurgery =outPutContexts.parameters.surgery;
       // console.log(contextSurgery);
