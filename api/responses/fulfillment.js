@@ -13,7 +13,7 @@ module.exports = function () {
     agent.add(`你好~我是病不孤單人工客服，免費幫您按預算找專科手術醫生，以及提供數據讓你更了解你的手術收費。請問你想查詢甚麼手術? (in sail )`);
   }
 
-  async   function fallback(agent) {
+  async function fallback(agent) {
     agent.add(`I didn't understand`);
     agent.add(`I'm sorry, can you try again?`);
   }
@@ -47,7 +47,7 @@ module.exports = function () {
   } 
 
   async function end(agent){
-    // let conv = agent.conv();
+     let conv = agent.conv();
      console.log(":::::::::::in End::::::::::::");
      console.log(conv);
 
