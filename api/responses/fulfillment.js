@@ -72,10 +72,10 @@ module.exports = function () {
           console.log(element.data())
       });
       
-      var surgery1 = await db.collection('surgery').doc('58');
       var surgery = await db.collection('surgery').doc('58').get();
-      lowerBaselinePrice = await db.collection('surgery').doc('58').lowerBaselinePrice;
-      upperBaselinePrice = await db.collection('surgery').doc('58').upperBaselinePrice;
+      lowerBaselinePrice = surgery.data().lowerBaselinePrice
+      upperBaselinePrice = surgery.data().upperBaselinePrice
+
       console.log(">>>>>>>"+lowerBaselinePrice);
       console.log(">>>>>>>>"+upperBaselinePrice);
   
