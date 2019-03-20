@@ -45,11 +45,6 @@ module.exports = function () {
     console.log(":::::::::::in user case confirm::::::::::::");
     console.log(conv);
     
-    var myoutputcontexts = agent.getContext('myoutputcontexts');
-    console.log('myoutputcontexts: '+myoutputcontexts);
-    var contextSurgery = myoutputcontexts.parameters.surgery;
-    
-    console.log(contextSurgery);
 
     return agent.add('而根據其他病人分享的資料，做胃鏡且收費接近中位數的醫生有：1.王大文2.陳阿文3.房小文\n個別醫生收費有異、醫療服務收費會修改、而病人情況也因人而異，這些都是影響收費的因素，如對收費有疑問請向你的醫生請教。本平台只蒐集病人個案，會力求資料正確，內容只供參考之用。未得同意，不得作其他商業用途。惟最終資料準確性，請諮詢醫生及專業人士。\n\n如有其他的查詢和分享，請輸入1；若無，請輸入2(in sail)');
     
@@ -87,8 +82,16 @@ module.exports = function () {
 
       console.log(">>>>>>>"+lowerBaselinePrice);
       console.log(">>>>>>>>"+upperBaselinePrice);
-
       
+      var myoutputcontexts = agent.getContext('myoutputcontexts');
+      // console.log('myoutputcontexts: '+myoutputcontexts);
+      var contextSurgery = myoutputcontexts.parameters.surgery;
+      console.log(contextSurgery);
+      var surgery = await db.collection('surgery').doc(contextSurgery).get();
+
+        // Get a value of a field of the doc.
+        var ChineseName = surgery.data()['內容'];
+        console.log("ChiNAme is " + ChineseName);
       
 
     return agent.add('多謝，請LIKE我們的FB專頁，讓更多病人明白手術收費。(in sail)\n + lowerBaseLinePrice '+lowerBaselinePrice);
