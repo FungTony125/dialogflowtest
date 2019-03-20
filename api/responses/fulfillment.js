@@ -25,7 +25,7 @@ module.exports = function () {
     console.log(conv);
     let params = agent.parameters;
      surgery = params.surgery;
-    console.log("The surgery 1234567 is "+surgery);
+    console.log("The surgery 573827 is "+surgery);
     return agent.add('請輸入負責手術的醫生名字，如不知道請輸入"0"**(in sailed)');
   }
 
