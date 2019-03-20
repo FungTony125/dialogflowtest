@@ -45,7 +45,7 @@ module.exports = function () {
     console.log(":::::::::::in user case confirm::::::::::::");
     console.log(conv);
     
-    var myoutputcontexts = agent.getContext.get('myoutputcontexts');
+    var myoutputcontexts = agent.getContext('myoutputcontexts');
     console.log('myoutputcontexts: '+myoutputcontexts);
     var contextSurgery = myoutputcontexts.parameters.surgery;
     
