@@ -33,6 +33,13 @@ module.exports = function () {
     let conv = agent.conv();
     console.log(":::::::::::in user provide doctor name::::::::::::");
     console.log(conv);
+
+    var myoutputcontexts = agent.context.get('myoutputcontexts');
+      console.log('myoutputcontexts: '+myoutputcontexts);
+      var contextSurgery = myoutputcontexts.parameters.surgery;
+      
+      console.log(contextSurgery);
+
     return agent.add('胃鏡基線案例收費通常為8300至13300，基線案例：A.沒息肉切除 B.一般胃鏡 C.沒有併發症/低風險/另加手術/急症 D. 醫院日間手術室 E.無麻醉醫生 F.住0/1晚。主要影響收費的選項及某些個案價的附加費如下：\n<=3有息肉切除<=1cm：4,700.\n<=3有息肉切除<=1cm：1,000.\n>3息肉切除,<=1cm：6,800.\n自體熒光成像(癌前損傷)：3,900.\n超細胃鏡5mm(小孩/老人)：1,700.\n膠囊內鏡：11,800.\n有併發症/高至中風險/另加手術/急症	的改費我們暫時未有案例。\n\n可以?(in sailed)');
     
   } 
@@ -79,11 +86,7 @@ module.exports = function () {
       console.log(">>>>>>>"+lowerBaselinePrice);
       console.log(">>>>>>>>"+upperBaselinePrice);
 
-      var myoutputcontexts = agent.context.get('myoutputcontexts');
-      console.log('myoutputcontexts: '+myoutputcontexts);
-      // var contextSurgery = outputContexts.parameters.surgery;
       
-      // console.log(contextSurgery);
       
 
     return agent.add('多謝，請LIKE我們的FB專頁，讓更多病人明白手術收費。(in sail)\n + lowerBaseLinePrice '+lowerBaselinePrice);
