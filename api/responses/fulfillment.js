@@ -25,7 +25,7 @@ module.exports = function () {
     console.log(conv);
     let params = agent.parameters;
      surgery = params.surgery;
-    console.log("The surgery 573827 is "+surgery);
+    console.log("The surgery is "+surgery);
     return agent.add('請輸入負責手術的醫生名字，如不知道請輸入"0"**(in sailed)');
   }
 
@@ -79,11 +79,11 @@ module.exports = function () {
       console.log(">>>>>>>"+lowerBaselinePrice);
       console.log(">>>>>>>>"+upperBaselinePrice);
 
-      var outputContexts = agent.context.get('outputContexts');
-      console.log('outputContexts: '+outputContexts);
-      var contextSurgery = outputContexts.parameters.surgery;
+      var myoutputcontexts = agent.context.get('myoutputcontexts');
+      console.log('myoutputcontexts: '+myoutputcontexts);
+      // var contextSurgery = outputContexts.parameters.surgery;
       
-      console.log(contextSurgery);
+      // console.log(contextSurgery);
       
 
     return agent.add('多謝，請LIKE我們的FB專頁，讓更多病人明白手術收費。(in sail)\n + lowerBaseLinePrice '+lowerBaselinePrice);
