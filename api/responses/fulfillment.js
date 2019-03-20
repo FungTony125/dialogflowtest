@@ -91,7 +91,7 @@ module.exports = function () {
 
         // Get a value of a field of the doc.
         var ChineseName = surgery.data()['內容'];
-        console.log("ChiNAme is " + ChineseName);
+        console.log("Chinese name is " + ChineseName);
       
 
     return agent.add('多謝，請LIKE我們的FB專頁，讓更多病人明白手術收費。(in sail)\n + lowerBaseLinePrice '+lowerBaselinePrice);
