@@ -23,9 +23,9 @@ module.exports = function () {
     let conv = agent.conv();
     console.log("::::::::in user provide surgery:::::::::::::::");
     console.log(conv);
-    let params = agent.queryText;
-    // surgery = params.queryText;
-    console.log("The surgery 987654321 is "+params);
+    let params = agent.parameters;
+     surgery = params.surgery;
+    console.log("The surgery 1234567 is "+surgery);
     return agent.add('請輸入負責手術的醫生名字，如不知道請輸入"0"**(in sailed)');
   }
 
