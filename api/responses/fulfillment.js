@@ -29,16 +29,104 @@ module.exports = function () {
     return agent.add('請輸入負責手術的醫生名字，如不知道請輸入"0"**(in sailed)');
   }
 
+
+
+
+
+
+
+
+
+
+
+
+
   async function provideDoctor(agent){
     let conv = agent.conv();
     console.log(":::::::::::in user provide doctor name::::::::::::");
     console.log(conv);
 
+    var myoutputcontexts = agent.getContext('myoutputcontexts');
+      // console.log('myoutputcontexts: '+myoutputcontexts);
+      var contextSurgery = myoutputcontexts.parameters.surgery;
+      console.log(contextSurgery);
+      var surgery = await db.collection('surgery').doc(contextSurgery).get();
+
+      // Get a value of a field of the doc.
+      var ChineseName = surgery.data()['content'];
+      console.log("Chinese name is " + ChineseName);
+
+    var abc = ['A', 'B', 'C', 'D', 'E', 'F','G','H','I','J', 'K','L','M' ,'N','O','P','Q','R','S', 'T','U','V','W','X','Y','Z'];
+    var count = 0;
+
+    async function getOptions() {
+        var output = await ChineseName + '基線案例收費通常為' + surgery.data().lowerBaselinePrice + "至" + surgery.data().upperBaselinePrice + "，基線案例: ";
+        //Get all collections of "Specific" document
+        var optionsRef = await db.collection('surgery').doc(contextSurgery).collection('option').doc('specific').getCollections();
+        var generalOptionsRef = await db.collection('general').doc('option').getCollections();
+        //console.log(JSON.stringify(optionsRef));
+        //Use for each to loop all collections > element = a collection
+        for (const element of optionsRef) {
+            var tempElement = await element.doc('1').get(); //First doc of each collection is the base case
+            console.log("Specific內容是: " + tempElement.data()['內容']);
+            output += await abc[count] + tempElement.data()['內容'] + ",  ";
+            //output += await abc[count] + tempElement.data()['內容'] + ",  ";
+            count++;
+            console.log(output);
+        }
+        for (const generalElement of generalOptionsRef) {
+            var tempElement = await generalElement.doc('1').get(); //First doc of each collection is the base case
+            console.log("General內容是:"  + tempElement.data()['內容']);
+           // console.log("----" + tempElement.data().title);
+            output += await abc[count] + tempElement.data()['內容'] + ",  ";
+            //output += await abc[count] + tempElement.data()['內容'] + ",  ";
+            count++;
+            console.log(output);
+        }
+        output += "主要影響收費的選項及某些個案價的附加費如下: ";
+
+        for(const element of optionsRef){
+            var optionDocs = await element.where('price', '>' , 0).get();
+            console.log("optionDocs is " + optionDocs);
+            optionDocs.forEach(doc => {
+                    // console.log(doc.id);
+                    // console.log(doc.data().price);
+                    output += doc.data()['內容'] +" : $" +doc.data().price +".";
+                });
+        }
+        for(const element of optionsRef){
+            var optionDocs = await element.where('price', '==' , -1).get();
+            console.log("optionDocs is " + optionDocs);
+            optionDocs.forEach(doc => {
+                    // console.log(doc.id);
+                    // console.log(doc.data().price);
+                    output += doc.data()['內容'] +". ";
+                });
+        }
+        output+="的收費我們暫時沒有個案。";
+        console.log("The returned output: " + output)
+        return output+"                    ";
+    }
+    var outputMessage =await getOptions()+". 如要查詢做此手術的醫生名單，請輸入yes，否則請輸入no ";
+    agent.add(outputMessage);
     
 
-    return agent.add('胃鏡基線案例收費通常為8300至13300，基線案例：A.沒息肉切除 B.一般胃鏡 C.沒有併發症/低風險/另加手術/急症 D. 醫院日間手術室 E.無麻醉醫生 F.住0/1晚。主要影響收費的選項及某些個案價的附加費如下：\n<=3有息肉切除<=1cm：4,700.\n<=3有息肉切除<=1cm：1,000.\n>3息肉切除,<=1cm：6,800.\n自體熒光成像(癌前損傷)：3,900.\n超細胃鏡5mm(小孩/老人)：1,700.\n膠囊內鏡：11,800.\n有併發症/高至中風險/另加手術/急症	的改費我們暫時未有案例。\n\n可以?(in sailed)');
+    //return agent.add('胃鏡基線案例收費通常為8300至13300，基線案例：A.沒息肉切除 B.一般胃鏡 C.沒有併發症/低風險/另加手術/急症 D. 醫院日間手術室 E.無麻醉醫生 F.住0/1晚。主要影響收費的選項及某些個案價的附加費如下：\n<=3有息肉切除<=1cm：4,700.\n<=3有息肉切除<=1cm：1,000.\n>3息肉切除,<=1cm：6,800.\n自體熒光成像(癌前損傷)：3,900.\n超細胃鏡5mm(小孩/老人)：1,700.\n膠囊內鏡：11,800.\n有併發症/高至中風險/另加手術/急症	的改費我們暫時未有案例。\n\n可以?(in sailed)');
     
   } 
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   async function caseConfirm(agent){
     let conv = agent.conv();
@@ -83,15 +171,7 @@ module.exports = function () {
       console.log(">>>>>>>"+lowerBaselinePrice);
       console.log(">>>>>>>>"+upperBaselinePrice);
       
-      var myoutputcontexts = agent.getContext('myoutputcontexts');
-      // console.log('myoutputcontexts: '+myoutputcontexts);
-      var contextSurgery = myoutputcontexts.parameters.surgery;
-      console.log(contextSurgery);
-      var surgery = await db.collection('surgery').doc(contextSurgery).get();
-
-        // Get a value of a field of the doc.
-        var ChineseName = surgery.data()['內容'];
-        console.log("Chinese name is " + ChineseName);
+      
       
 
     return agent.add('多謝，請LIKE我們的FB專頁，讓更多病人明白手術收費。(in sail)\n + lowerBaseLinePrice '+lowerBaselinePrice);
